@@ -52,4 +52,4 @@ while True:
         f.close()
     #记事本数据库2333333
     oldnow_follower = now_follower
-    time.sleep(int(sec))
+    time.sleep(int(sec))#自动休眠
