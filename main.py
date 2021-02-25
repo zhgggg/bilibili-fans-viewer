@@ -14,8 +14,14 @@ print("欢迎使用 BILIBILI掉粉小助手！")
 
 uid = input("输入你想查询的uid:")
 sec = input("输入监测频率(单位:秒)")
+log = input("是否输出日志？(y/n)")
 
-print("查询ing")
+if log == "y":
+    print("日志文件将保存在/log.txt文件中")
+elif log == "n":
+    print("日志已关闭")
+else:
+  print("你打的啥玩意,不想保存日志就直说")
 
 url = 'https://api.bilibili.com/x/relation/stat?vmid=' + uid + '&jsonp=jsonp'
 req = request.Request(url)
@@ -47,9 +53,11 @@ while True:
     dis_follower = begin_follower - now_follower
 
     print("[掉粉小助手]" + "当前时间：" + str(now) + "     ""您正在监测"+name+"的粉丝数据     " +name+ "粉丝现在为:" + str(now_follower) + "人"     "总共取关了" + str(dis_follower) + "人     实时取关了" + str(rundis_follower) + "人" )
-    with open("log.txt","a") as f: 
-        f.writelines("\n" + now  + "     " + name + "粉丝现在为:" + str(now_follower) + "     总共取关了" + str(dis_follower) + "人     实时取关了" + str(rundis_follower) + "人")
-        f.close()
+    if log == "y":
+      with open("log.txt","a") as f: 
+          f.writelines("\n" + now  + "     " + name + "粉丝现在为:" + str(now_follower) + "     总共取关了" + str(dis_follower) + "人     实时取关了" + str(rundis_follower) + "人")
+          f.close()
     #记事本数据库2333333
+    
     oldnow_follower = now_follower
-    time.sleep(int(sec))#自动休眠
+    time.sleep(int(sec))
