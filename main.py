@@ -47,7 +47,7 @@ name = cod[rfirst:rlast]
 #从用户信息中截出用户名
 
 while True:
-
+    now = time.strftime("%m月%d日%H:%M:%S", time.localtime())
     now_follower = int(re.findall('"follower":([0-9]*)',string,flags=0)[0])
     rundis_follower = oldnow_follower  - now_follower
     dis_follower = begin_follower - now_follower
